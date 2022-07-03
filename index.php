@@ -1,6 +1,6 @@
 <?php
 
-include_once "config/database.php";
+// include_once "config/database.php";
 
 
 // DONT FORGET ($_FILES) TO SHOW FILES INFO 
@@ -39,37 +39,84 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <main>
         
         <form action="" class="form-hhc" method="POST" enctype="multipart/form-data">
-            <legend>Form Sample title</legend>
+            <legend>Form Sample Title</legend>
             <fieldset>
                 <!-- Input #1 -->
-                <div>
-                    <label for="name" class="form-label">Patent's Name</label>
+                <div class="input-filed">
+                    <label for="name" class="form-label">Patent's Name <span class="required-star">*</span></label>
                     <input type="text" name="1"  class="form-control">
                 </div>
                 <!-- Input #2 -->
-                <div>
-                    <label for="name" class="form-label">Patent's Nat.ID</label>
+                <div class="input-filed">
+                    <label for="name" class="form-label">Patent's Nat.ID <span class="required-star">*</span></label>
                     <input type="text" name="2" class="form-control">
+                    <small class="example">example: 11********</small>
                 </div>
                 <!-- Input #3 -->
-                <div>
-                    <label for="name" class="form-label">Patent's Health File</label>
-                    <input type="text" name="3" class="form-control">
+                <div class="input-filed">
+                    <label for="name" class="form-label">Patent's Health File <span class="required-star">*</span></label>
+                    <input type="file" name="3" class="form-control">
                 </div>
                 <!-- Input #4 -->
-                <div>
+                <div class="input-filed input4">
                     <label for="name" class="form-label">Patent's Phone Number</label>
-                    <input type="text" name="4" class="form-control">
+                    <input type="tel" name="4" class="form-control" pattern="[0]{1}[5]{1}[0-9]{8}">
+                    <small class="example">example: 05********</small>
                 </div>
-                <!-- Input #5 -->
-                <div>
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="5" class="form-control">
+                <!-- Input "Referred Hospital" type=select -->
+                <div class="input-filed">
+                    <label for="Hospital-referred" class="label-form">Select Hospital</label>
+                    <select name="" id="Hospital-referred" class="select-form">
+                        <option selected></option>
+                        <option value="1">Hospital 1</option>
+                        <option value="2">Hospital 2</option>
+                        <option value="3">Hospital 3</option>
+                        <option value="4">Hospital 4</option>
+                        <option value="5">Hospital 5</option>
+                   </select>
                 </div>
                 <!-- Input #6 -->
-                <div>
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="6" class="form-control">
+                <div class="input-filed">
+                    <label for="nationality" class="form-label">Nationality <span class="required-star">*</span></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="nationality" id="saudi" checked value="saudi">
+                            <label class="form-check-label" for="saudi">
+                                Saudi
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="nationality" id="non-saudi" value="non-saudi">
+                            <label class="form-check-label" for="non-saudi">
+                                Non-Saudi
+                            </label>
+                        </div>
+                </div>
+                <!-- Input #6 -->
+                <div class="input-filed">
+                        <label for="Gender" class="form-label">Gender</label>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked value="meal">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Meal
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="female">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Female
+                                </label>
+                            </div>
+                </div>
+    
+                 <!-- Input #6 -->
+                 <div class="input-filed">
+                    <label for="name" class="form-label">Date</label>
+                    <input type="date" name="6" class="form-control">
+                </div>
+
+                <div class="input-filed">
+                    <label  class="label-control" for="">Complaint & Duration <span class="required-star">*</span></label>
+                    <textarea  class="form-control"name="" id="" cols="30" rows="10"></textarea>
                 </div>
 
                 <div>

@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700&family=Oswald:wght@400;500&family=Ubuntu:wght@400;500&display=swap');
+
 :root {
     --primary1: #009b72;
     --primary2: #453a77;
@@ -8,6 +10,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    /* border: 1px solid darkblue; */
 }
 
 
@@ -17,6 +20,7 @@ li, a, .HHC-Logo {
     font-size: 1.1em;
     color: #ffff;
     text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 header{
@@ -24,7 +28,11 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
-    background-color: #453a77;
+    background: rgb(69,58,119);
+    background: linear-gradient(135deg, rgba(69,58,119,1) 13%, rgba(0,155,114,1) 61%);
+    box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75); 
 }
 
 .nav-items li {
@@ -42,8 +50,8 @@ header{
 }
 
 .nav-items li a:hover {
-    border-bottom: 2px solid var(--primary1);
-    color: var(--primary1)
+    /* border-bottom: 2px solid var(--primary2); */
+    color: var(--primary2)
 
 }
 /* End OF Navbar */
@@ -55,11 +63,24 @@ main {
     gap: 1.5rem;
     grid-template-columns: repeat(4, 1fr);
     /* grid-template-rows: repeat(3, 1fr); */
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 form {
     grid-column: 2/4;
+    border: solid 1px transparent ;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75); 
+    font-family: 'Ubuntu', sans-serif;
+   
+}
+
+form .input-filed {
+    margin-top: 15px ;
+    /* margin-bottom: 5px ; */
 }
 
 .btn {
@@ -67,4 +88,26 @@ form {
     color: var(--font-olor);
     background-color: var(--primary1)
     
+}
+
+.example {
+    color:var(--primary2)
+}
+
+.required-star {
+    color: red;
+}
+
+@media screen and (max-width: 600px) {
+    form {
+        grid-column: 1/5;
+        border: solid 1px transparent ;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75); 
+        font-family: 'Ubuntu', sans-serif;
+       
+    }
 }
