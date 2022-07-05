@@ -1,6 +1,6 @@
 <?php
 
-// include_once "config/database.php";
+include_once "config/database.php";
 
 
 // DONT FORGET ($_FILES) TO SHOW FILES INFO 
@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </div>
                 <!-- Input "Referred Hospital" type=select -->
                 <div class="input-filed">
-                    <label for="Hospital-referred" class="label-form">Select Hospital</label>
+                    <label for="Hospital-referred" class="label-form">Select Referred Hospital</label>
                     <select name="" id="Hospital-referred" class="select-form">
                         <option selected></option>
                         <option value="1">Hospital 1</option>

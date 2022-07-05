@@ -1,18 +1,18 @@
 <?php
 
-$connection = [
-    'host' => 'localhost',
+$dbCoonnection = [
+    'host' => '127.0.0.1',
     'user' => 'root',
-    'password' => '',
-    'database' => 'manag'
+    'password' => '12345678',
+    'database' => 'hhcform'
 ];
 
-$conn = new mysqli($connection['host'],
-                    $connection['user'],
-                    $connection['password'],
-                    $connection['database']);
+$dbConn= new mysqli($dbCoonnection['host'],
+                    $dbCoonnection['user'],
+                    $dbCoonnection['password'],
+                    $dbCoonnection['database']);
 
-if($conn->connect_error){
-    die("Error connection to database".$conn->connect_error);
+if($dbConn->connect_error){
+    die("Error connection to database ".$dbConn->connect_error);
 }
 
