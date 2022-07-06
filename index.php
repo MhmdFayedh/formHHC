@@ -3,10 +3,32 @@
 include_once "config/database.php";
 
 
-// DONT FORGET ($_FILES) TO SHOW FILES INFO 
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    echo '<pre>'; print_r($_POST); echo '</pre>';
+    $pName = $_POST['p-name'];
+    $pNatID = $_POST['p-nat-id'];
+    $pPhoneNum = $_POST['p-phone-num'];
+    $pRefHosptil = $_POST['p-ref-hosptil'];
+    $pNat = $_POST['nationality'];
+    $pGender = $_POST['gender'];
+    $pDate = $_POST['p-date'];
+    $pCompDura = $_POST['p-comp-dura'];
+
+
+  $sqlInsert = "INSERT INTO hhc_form (p_name, p_nat_id, p_phone_num, p_referred_hospital,
+   p_nat, p_gender, P_date, p_comp_dura)
+   VALUES ('$pName', '$pNatID', '$pPhoneNum', '$pRefHosptil', '$pNat', '$pGender', '$pDate', '$pCompDura')";
+
+    if($dbConn->query($sqlInsert) === true){
+        echo "TRUE";
+    } else {
+        echo "FALSE";
+    }
+
 };
+
+
+
 ?>
 
 
@@ -44,12 +66,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <!-- Input #1 -->
                 <div class="input-filed">
                     <label for="name" class="form-label">Patent's Name <span class="required-star">*</span></label>
-                    <input type="text" name="1"  class="form-control">
+                    <input type="text" name="p-name"  class="form-control">
                 </div>
                 <!-- Input #2 -->
                 <div class="input-filed">
                     <label for="name" class="form-label">Patent's Nat.ID <span class="required-star">*</span></label>
-                    <input type="text" name="2" class="form-control">
+                    <input type="text" name="p-nat-id" class="form-control">
                     <small class="example">example: 11********</small>
                 </div>
                 <!-- Input #3 -->
@@ -60,13 +82,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <!-- Input #4 -->
                 <div class="input-filed input4">
                     <label for="name" class="form-label">Patent's Phone Number</label>
-                    <input type="tel" name="4" class="form-control" pattern="[0]{1}[5]{1}[0-9]{8}">
+                    <input type="tel" name="p-phone-num" class="form-control" pattern="[0]{1}[5]{1}[0-9]{8}">
                     <small class="example">example: 05********</small>
                 </div>
                 <!-- Input "Referred Hospital" type=select -->
                 <div class="input-filed">
                     <label for="Hospital-referred" class="label-form">Select Referred Hospital</label>
-                    <select name="" id="Hospital-referred" class="select-form">
+                    <select name="p-ref-hosptil" id="Hospital-referred" class="select-form">
                         <option selected></option>
                         <option value="1">Hospital 1</option>
                         <option value="2">Hospital 2</option>
@@ -95,28 +117,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class="input-filed">
                         <label for="Gender" class="form-label">Gender</label>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked value="meal">
+                                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" checked value="meal">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Meal
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="female">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Female
                                 </label>
                             </div>
                 </div>
     
-                 <!-- Input #6 -->
+                 <!-- Input #7 -->
                  <div class="input-filed">
                     <label for="name" class="form-label">Date</label>
-                    <input type="date" name="6" class="form-control">
+                    <input type="date" name="p-date" class="form-control">
                 </div>
 
+                <!-- Input #7 -->
                 <div class="input-filed">
                     <label  class="label-control" for="">Complaint & Duration <span class="required-star">*</span></label>
-                    <textarea  class="form-control"name="" id="" cols="30" rows="10"></textarea>
+                    <textarea  class="form-control" name="p-comp-dura" id="" cols="30" rows="10"></textarea>
                 </div>
 
                 <div>
