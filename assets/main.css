@@ -110,4 +110,23 @@ form .input-filed {
         font-family: 'Ubuntu', sans-serif;
        
     }
+    
+}
+
+.done-msg {
+    grid-column: 2/4;
+    border: solid 1px transparent ;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 26px -5px rgba(0,0,0,0.75); 
+    font-family: 'Ubuntu', sans-serif;
+    display: grid;
+    place-items: center ;
+   
+}
+
+.done-msg img {
+    width: 300px;
 }
