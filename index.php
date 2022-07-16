@@ -1,34 +1,7 @@
 <?php
 
-include_once "config/database.php";
-
-
-
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $pName = $_POST['p-name'];
-    $pNatID = $_POST['p-nat-id'];
-    $pPhoneNum = $_POST['p-phone-num'];
-    $pRefHosptil = $_POST['p-ref-hosptil'];
-    $pNat = $_POST['nationality'];
-    $pGender = $_POST['gender'];
-    $pDate = $_POST['p-date'];
-    $pCompDura = $_POST['p-comp-dura'];
-
-
-  $sqlInsert = "INSERT INTO hhc_form (p_name, p_nat_id, p_phone_num, p_referred_hospital,
-   p_nat, p_gender, P_date, p_comp_dura)
-   VALUES ('$pName', '$pNatID', '$pPhoneNum', '$pRefHosptil', '$pNat', '$pGender', '$pDate', '$pCompDura')";
-
-    if($dbConn->query($sqlInsert) === true){
-        echo "TRUE";
-    } else {
-        echo "FALSE";
-    }
-
-};
-
-
-
+include_once "functions/uploader.php";
+   
 ?>
 
 
@@ -59,36 +32,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </header>
 
     <main>
-        
-        <form action="" class="form-hhc" method="POST" enctype="multipart/form-data">
+       
+        <form action="" class="form-hhc" method="post" enctype="multipart/form-data">
             <legend>Form Sample Title</legend>
             <fieldset>
-                <!-- Input #1 -->
+                <!-- Input #1 Patent's Name  -->
                 <div class="input-filed">
-                    <label for="name" class="form-label">Patent's Name <span class="required-star">*</span></label>
-                    <input type="text" name="p-name"  class="form-control">
+                    <label for="p-name" class="form-label">Patent's Name <span class="required-star">*</span></label>
+                    <input type="text" name="p-name" id="p-name"  class="form-control" value="<?php echo $name ?>" required >
                 </div>
-                <!-- Input #2 -->
+                <small class="required-star"><?php echo $nameError ?></small>
+                
+                <!-- Input #2 Patent's Nat.ID -->
                 <div class="input-filed">
-                    <label for="name" class="form-label">Patent's Nat.ID <span class="required-star">*</span></label>
-                    <input type="text" name="p-nat-id" class="form-control">
+                    <label for="p-nat-id" class="form-label">Patent's Nat.ID <span class="required-star">*</span></label>
+                    <input type="text" name="p-nat-id" id="p-nat-id" class="form-control" value="<?php echo $id ?>" pattern="[0-9]{10}" required>
+                    <small class="required-star"><?php echo $natIdError  ?></small>
                     <small class="example">example: 11********</small>
                 </div>
-                <!-- Input #3 -->
+                <!-- Input #3 Patent's Health File-->
                 <div class="input-filed">
-                    <label for="name" class="form-label">Patent's Health File <span class="required-star">*</span></label>
-                    <input type="file" name="3" class="form-control">
+                    <label for="healthfile" class="form-label">Patent's Health File <span class="required-star">*</span></label>
+                    <input type="file" name="healthfile" id="healthfile" class="form-control" required>
+                    <small class="required-star"><?php echo $healthFileError ?></small>
                 </div>
-                <!-- Input #4 -->
+                <!-- Input #4 Patent's Phone Number -->
                 <div class="input-filed input4">
-                    <label for="name" class="form-label">Patent's Phone Number</label>
-                    <input type="tel" name="p-phone-num" class="form-control" pattern="[0]{1}[5]{1}[0-9]{8}">
+                    <label for="p-phone-num" class="form-label">Patent's Phone Number</label>
+                    <input type="tel" name="p-phone-num" id="p-phone-num" class="form-control" pattern="[0][5]{1}[0-9]{8}" value="<?php echo $phone ?>">
+                    <small class="required-star"><?php echo $phoneError ?></small>
                     <small class="example">example: 05********</small>
                 </div>
-                <!-- Input "Referred Hospital" type=select -->
+                <!-- Input #5 Referred Hospital -->
                 <div class="input-filed">
-                    <label for="Hospital-referred" class="label-form">Select Referred Hospital</label>
-                    <select name="p-ref-hosptil" id="Hospital-referred" class="select-form">
+                    <label for="p-ref-hosptil" class="label-form">Select Referred Hospital </label>
+                    <select name="p-ref-hosptil" id="p-ref-hosptil" class="select-form" value="<?php echo $reffHospital ?>" required>
                         <option selected></option>
                         <option value="1">Hospital 1</option>
                         <option value="2">Hospital 2</option>
@@ -96,10 +74,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <option value="4">Hospital 4</option>
                         <option value="5">Hospital 5</option>
                    </select>
+                   <small class="required-star"><?php echo $reffHospitalError ?></small>
                 </div>
-                <!-- Input #6 -->
+                <!-- Input #6 Nationality -->
                 <div class="input-filed">
-                    <label for="nationality" class="form-label">Nationality <span class="required-star">*</span></label>
+                    <label for="nationality" class="form-label">Nationality </label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="nationality" id="saudi" checked value="saudi">
                             <label class="form-check-label" for="saudi">
@@ -113,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             </label>
                         </div>
                 </div>
-                <!-- Input #6 -->
+                <!-- Input #6 Gender -->
                 <div class="input-filed">
                         <label for="Gender" class="form-label">Gender</label>
                                 <div class="form-check">
@@ -129,21 +108,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 </label>
                             </div>
                 </div>
-    
-                 <!-- Input #7 -->
+                 <!-- Input #7 Date-->
                  <div class="input-filed">
-                    <label for="name" class="form-label">Date</label>
-                    <input type="date" name="p-date" class="form-control">
+                    <label for="p-date" class="form-label">Date</label>
+                    <input type="date" name="p-date" id="p-date"" class="form-control" value="<?php echo $date ?>">
                 </div>
+                
 
-                <!-- Input #7 -->
+                <!-- Input #7 Complaint & Duration-->
                 <div class="input-filed">
-                    <label  class="label-control" for="">Complaint & Duration <span class="required-star">*</span></label>
-                    <textarea  class="form-control" name="p-comp-dura" id="" cols="30" rows="10"></textarea>
+                    <label  class="label-control" for="p-comp-dura">Complaint & Duration <span class="required-star">*</span></label>
+                    <textarea  class="form-control" name="p-comp-dura" id="p-comp-dura" cols="30" rows="10" required> <?php echo $compDura ?></textarea>
+                    <small class="required-star"><?php echo $comoDuraError ?></small>
                 </div>
 
                 <div>
-                    <button class="btn">Submit</button>
+                    <button type="submit" class="btn" >Submit</button>
                 </div>
             </fieldset>
 
