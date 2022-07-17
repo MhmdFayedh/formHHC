@@ -95,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    
 
 
-    // Check for the file, Make folder to upload the files. 
+    // Check for the file, make folder to upload the files. 
     if(isset($_FILES['healthfile']) && isset($_FILES['error']) == 0){
         $fileUploadStauts = fileCheck($_FILES['healthfile']);
 
@@ -118,10 +118,26 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
   if (!$nameError && !$natIdError && !$phoneError && !$comoDuraError && !$healthFileError ) {
+ 
+        // Statement Prepare  
+      $stmt = $dbConn->prepare("INSERT INTO hhc_form (p_name, p_nat_id, healthfile,  p_phone_num, p_referred_hospital,p_nat, p_gender, P_date, p_comp_dura) 
+      VALUES ('?', '?', '?/?' ,'?', '?', '?', '?', '?', '?')");
+      
+       // Statement binding
+      $stmt->bind_param('sisisssis', $dbName, $dbId, $dbFile, $dbPhone,  $dbHospital, $dbNat, $dbGender, $dbDate, $dbCompDura );
+      $dbName = $name;
+      $dbId = $id;
+      $dbFile = $uploasDir.'/'.$filename;
+      $dbPhone = $phone;
+      $dbHospital = $reffHospital;
+      $dbNat = $nat;
+      $dbGender = $gender;
+      $dbDate = $date;
+      $dbCompDura = $compDura;
 
-      $sqlInsert = "INSERT INTO hhc_form (p_name, p_nat_id, healthfile,  p_phone_num, p_referred_hospital,p_nat, p_gender, P_date, p_comp_dura) 
-      VALUES ('$name', '$id', '$uploasDir/$filename' ,'$phone', '$reffHospital', '$nat', '$gender', '$date', '$compDura')";
-      $dbConn->query($sqlInsert); 
+       // Statement Execute
+      $stmt->execute();
+
       header("Location: done.php");
       exit();
         
