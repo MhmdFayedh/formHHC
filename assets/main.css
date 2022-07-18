@@ -98,6 +98,17 @@ form .input-filed {
     color: red;
 }
 
+
+/* Statr Of Footer */
+footer {
+    margin-top: 5%;
+    padding: 10px;
+    background-color:#453a77;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (max-width: 600px) {
     form {
         grid-column: 1/5;

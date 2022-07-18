@@ -120,8 +120,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if (!$nameError && !$natIdError && !$phoneError && !$comoDuraError && !$healthFileError ) {
  
         // Statement Prepare  
-      $stmt = $dbConn->prepare("INSERT INTO hhc_form (p_name, p_nat_id, healthfile,  p_phone_num, p_referred_hospital,p_nat, p_gender, P_date, p_comp_dura) 
-      VALUES ('?', '?', '?/?' ,'?', '?', '?', '?', '?', '?')");
+      $stmt = $dbConn->prepare("INSERT INTO hhc_form (p_name, p_nat_id, healthfile,  p_phone_num, p_referred_hospital, p_nat, p_gender, P_date, p_comp_dura) 
+      VALUES ('?', '?', '?' ,'?', '?', '?', '?', '?', '?')");
       
        // Statement binding
       $stmt->bind_param('sisisssis', $dbName, $dbId, $dbFile, $dbPhone,  $dbHospital, $dbNat, $dbGender, $dbDate, $dbCompDura );
@@ -141,8 +141,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       header("Location: done.php");
       exit();
         
-  } else {
-        echo "An Error";
-  }
+  } 
 
 };
